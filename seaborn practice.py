@@ -1,16 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jul 28 18:14:35 2026
-
-@author: lau
-"""
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ---- Load & prep ---------------------------------------------------------
+# ---- Load & prep data ---------------------------------------------------------
 df = pd.read_excel('WIBRS F copy 2.xlsx')
 
 # View the first 5 rows of data
