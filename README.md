@@ -56,16 +56,11 @@ Next, we will prep the data for analysis.
 yearly = df.groupby('ReportedYear').size().reset_index(name='count')
  ```
 
-```python df.groupby('ReportedYear')``` - buckets every row (incident) in the dataset by its ```python ReportedYear``` value.
+ ```df.groupby('ReportedYear')``` - buckets every row (incident) in the dataset by its ```ReportedYear``` value.
+ ```.size()``` - counts how many rows fall into each year-bucket.
+ ```.reset_index(name='count')``` - turns that into a clean two-column table: ReportedYear and count.
 
-
-
-
-
-
-
-
-
+Next... 
 ```python
 # 2. Day of week
 dow_order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
