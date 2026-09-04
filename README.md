@@ -57,8 +57,21 @@ yearly = df.groupby('ReportedYear').size().reset_index(name='count')
  ```
 
  ```df.groupby('ReportedYear')``` - buckets every row (incident) in the dataset by its ```ReportedYear``` value.
+ 
  ```.size()``` - counts how many rows fall into each year-bucket.
+ 
  ```.reset_index(name='count')``` - turns that into a clean two-column table: ReportedYear and count.
+
+ So ```yearly``` ends up looking like:
+| ReportedYear | Count |
+| ------------- | ------------- |
+| 2020 | 35651 |
+| 2021 | 43346 |
+| 2022 | 37600 |
+| 2023 | 36001 |
+| 2024 | 35940 |
+| 2025 | 30727 |
+
 
 Next... 
 ```python
@@ -72,6 +85,7 @@ dow = (df['ReportedDateTime'].dt.day_name()
 month_labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 ```
 ```dow``` - a chained set of operations that build the ```dow``` table:
+
 ```dow_order``` - a list of the days of the week in the order we want them displayed
 ```df['ReportedDateTime'].dt.day_name()``` - takes the timestamp of every incident and converts it to the name of the weekday it fell on
 ```.value_counts()``` - tallies up how many incidents happened on each weekday
