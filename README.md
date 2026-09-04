@@ -86,17 +86,17 @@ month_labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 ```
 ```dow``` - a chained set of operations that build the ```dow``` table:
 
-```dow_order``` - a list of the days of the week in the order we want them displayed
+```dow_order``` - a list of the days of the week in the order we want them displayed.
 
-```df['ReportedDateTime'].dt.day_name()``` - takes the timestamp of every incident and converts it to the name of the weekday it fell on
+```df['ReportedDateTime'].dt.day_name()``` - takes the timestamp of every incident and converts it to the name of the weekday it fell on.
 
-```.value_counts()``` - tallies up how many incidents happened on each weekday
+```.value_counts()``` - tallies up how many incidents happened on each weekday.
 
-```.reindex(dow_order)``` - reorders those tallies to match the Monday→Sunday order
+```.reindex(dow_order)``` - reorders those tallies to match the Monday→Sunday order.
 
-```.rename_axis('day')``` - labels the index column ```"day"```
+```.rename_axis('day')``` - labels the index column ```"day"```.
 
-```.reset_index(name='count')``` - turns it into a clean two-column table: ```day``` and ```count```
+```.reset_index(name='count')``` - turns it into a clean two-column table: ```day``` and ```count```.
 
 So ```dow``` ends up looking like:
 | day | Count |
@@ -113,11 +113,11 @@ Next...
 offense_totals = df[offense_cols].sum().sort_values(ascending=False)
  ```
 
-```df[offense_cols]``` - selects just the ten offense-type columns from the dataset
+```df[offense_cols]``` - selects just the ten offense-type columns from the dataset.
 
-```.sum()``` - adds up each column down its full length, giving a single total count per offense type (e.g. how many rows have ```AssaultOffense == 1```)
+```.sum()``` - adds up each column down its full length, giving a single total count per offense type (e.g. how many rows have ```AssaultOffense == 1```).
 
-```.sort_values(ascending=False)``` - reorders those totals from highest to lowest
+```.sort_values(ascending=False)``` - reorders those totals from highest to lowest.
 
 So ```offense_totals``` ends up as a simple ranked list:
 | Offense | count |
@@ -127,29 +127,41 @@ So ```offense_totals``` ends up as a simple ranked list:
 | ... | ... |
 | Homicide | ~1,000 |
 
+Next...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
+```python
 # 4. Top weapons (excluding NaN/NONE clutter, keep top 8 real categories)
 weapons = df['WeaponUsed'].value_counts()
 weapons = weapons[~weapons.index.isin(['NONE'])].head(8)
- 
+ ```
+
+```df['WeaponUsed'].value_counts()``` - looks at the WeaponUsed column and counts how many times each distinct value appears.
+```weapons[~weapons.index.isin(['NONE'])]``` - drops the ```"NONE"``` category.
+```.head(8)``` - keeps only the top 8 remaining categories by count.
+
+| Weapon | count |
+| ------------- | ------------- |
+| Personal Weapon | ~33,800 |
+| Firearm | ~12,200 |
+| ... | ... |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```python
 # 5. Heatmap: Year x Month counts
 heat = df.pivot_table(index='ReportedMonth', columns='ReportedYear',
                        values='IncidentNum', aggfunc='count').reindex(range(1, 13))
