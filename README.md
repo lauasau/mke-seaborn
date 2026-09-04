@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import seaborn as sns
 ```
-## :file_folder: Loading and Prepping the Data
+## :file_folder: Loading the Data
 Using the pandas function ```pd.read_excel()```, we will then load the data from our Excel spreadsheet file into a pandas Dataframe. In this case, our Excel file is named "WIBRS F copy 2.xlsx." We will also define the list of the crime-category column name from our dataset.
 ```python
 df = pd.read_excel('WIBRS F copy 2.xlsx')
@@ -47,7 +47,49 @@ def vlag_bars(n):
             pts.append(t * 0.4 if t < 0.5 else 0.6 + (t - 0.5) * 0.8)
     return sns.color_palette([CMAP(x) for x in pts])
 ```
+# :fork_and_knife: Prepping the Data
+Next, we will prep the data for analysis.
 
+```python
+# ---------- Prep data ----------
+# 1. Yearly trend
+yearly = df.groupby('ReportedYear').size().reset_index(name='count')
+ ```
+
+```python df.groupby('ReportedYear')``` - buckets every row (incident) in the dataset by its ```python ReportedYear``` value.
+
+
+
+
+
+
+
+
+
+```python
+# 2. Day of week
+dow_order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+dow = (df['ReportedDateTime'].dt.day_name()
+       .value_counts()
+       .reindex(dow_order)
+       .rename_axis('day')
+       .reset_index(name='count'))
+month_labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+ 
+# 3. Offense type totals
+offense_totals = df[offense_cols].sum().sort_values(ascending=False)
+ 
+# 4. Top weapons (excluding NaN/NONE clutter, keep top 8 real categories)
+weapons = df['WeaponUsed'].value_counts()
+weapons = weapons[~weapons.index.isin(['NONE'])].head(8)
+ 
+# 5. Heatmap: Year x Month counts
+heat = df.pivot_table(index='ReportedMonth', columns='ReportedYear',
+                       values='IncidentNum', aggfunc='count').reindex(range(1, 13))
+heat.index = month_labels
+ 
+# 6. Top 10 wards
+top_wards = df['WARD'].value_counts().head(10).sort_values()
 
 
 
