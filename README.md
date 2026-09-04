@@ -188,7 +188,18 @@ So ```top_wards``` ends up as:
 
 
 # :camera: Visualizing our Data
+Now that we are done prepping our data, it is time to create our graphics!
 
+```python
+# Panel 1: Yearly trend
+ax = axes[0, 0]
+sns.lineplot(data=yearly, x='ReportedYear', y='count', ax=ax,
+             marker='o', markersize=9, linewidth=2.5, color=ACCENT)
+ax.fill_between(yearly['ReportedYear'], yearly['count'], color=ACCENT, alpha=0.15)
+ax.set_title('Total Incidents by Year', fontsize=13, fontweight='bold')
+ax.set_xlabel('Year'); ax.set_ylabel('Incidents')
+ax.set_xticks(yearly['ReportedYear'])
+```
 
 
 
