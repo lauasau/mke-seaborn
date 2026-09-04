@@ -260,8 +260,13 @@ ax.set_title('Top 10 Wards by Incident Count', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ```
 
-
-
+Now that we have our charts ready, we will display on a dashboard layout and then save it to our folder.
+```python
+plt.tight_layout(rect=[0, 0, 1, 0.98])
+plt.savefig('/mnt/user-data/outputs/wibrs_crime_dashboard_vlag.png', dpi=150,
+            bbox_inches='tight')
+print('saved')
+```
 
 
 
