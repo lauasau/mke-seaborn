@@ -136,7 +136,9 @@ weapons = weapons[~weapons.index.isin(['NONE'])].head(8)
  ```
 
 ```df['WeaponUsed'].value_counts()``` - looks at the WeaponUsed column and counts how many times each distinct value appears.
+
 ```weapons[~weapons.index.isin(['NONE'])]``` - drops the ```"NONE"``` category.
+
 ```.head(8)``` - keeps only the top 8 remaining categories by count.
 
 | Weapon | count |
