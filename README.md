@@ -7,8 +7,14 @@ Seaborn is one of my favorite libraries since it is so easy to learn and because
 
 
 
-## :chart_with_downwards_trend:Visualizing Milwaukee Crime Data
-Once again, I will be working with Milwaukee crime data. The dataset that I will be utilizing is available on the 'City of Milwaukee' open data portal. 
+## :chart_with_downwards_trend:Obtaining and Importing the Data
+Once again, I will be working with Milwaukee crime data. The dataset that I will be utilizing is available on the 'City of Milwaukee' open data portal, [here](https://data.milwaukee.gov/group/public-safety)
+
+For this analysis, we will be needing to import the following libraries: panadas, matplotlib.pyplot, and seaborn.
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 
