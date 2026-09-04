@@ -113,6 +113,20 @@ Next...
 offense_totals = df[offense_cols].sum().sort_values(ascending=False)
  ```
 
+```df[offense_cols]``` - selects just the ten offense-type columns from the dataset
+
+```.sum()``` - adds up each column down its full length, giving a single total count per offense type (e.g. how many rows have ```AssaultOffense == 1```)
+
+```.sort_values(ascending=False)``` - reorders those totals from highest to lowest
+
+So ```offense_totals``` ends up as a simple ranked list:
+| Offense | count |
+| ------------- | ------------- |
+| AssaultOffense | ~79,000 |
+| VehicleTheft | ~41,000 |
+| ... | ... |
+| Homicide | ~1,000 |
+
 
 
 
