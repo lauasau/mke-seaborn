@@ -36,7 +36,7 @@ CMAP = sns.color_palette(PALETTE, as_cmap=True)
 ACCENT = sns.color_palette(PALETTE, 8)[1]  # single accent color for line/trend charts
  
 def bone_bars(n):
-#Sample the palette while skipping its washed-out white middle band so every bar stays visible against the shaded background
+#Sample the palette while skipping its washed-out white middle band \nso every bar stays visible against the shaded background
     if n == 1:
         pts = [0.15]
     else:
