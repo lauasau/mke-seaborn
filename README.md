@@ -107,7 +107,6 @@ So ```dow``` ends up looking like:
 | Sunday | 33 ... |
 
 Next...
-
 ```python
 # 3. Offense type totals
 offense_totals = df[offense_cols].sum().sort_values(ascending=False)
@@ -128,7 +127,6 @@ So ```offense_totals``` ends up as a simple ranked list:
 | Homicide | ~1,000 |
 
 Next...
-
 ```python
 # 4. Top weapons (excluding NaN/NONE clutter, keep top 8 real categories)
 weapons = df['WeaponUsed'].value_counts()
@@ -147,28 +145,35 @@ weapons = weapons[~weapons.index.isin(['NONE'])].head(8)
 | Firearm | ~12,200 |
 | ... | ... |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Next...
 ```python
 # 5. Heatmap: Year x Month counts
 heat = df.pivot_table(index='ReportedMonth', columns='ReportedYear',
                        values='IncidentNum', aggfunc='count').reindex(range(1, 13))
 heat.index = month_labels
- 
+ ```
+
+```index='ReportedMonth'``` - makes each row of the resulting table one of the 12 months.
+```columns='ReportedYear'``` - makes each column one of the years (2020–2025).
+```values='IncidentNum', aggfunc='count'``` - for every month/year combination, counts how many incident numbers fall in that cell.
+```.reindex(range(1, 13))``` - forces the row order to be month numbers 1 through 12 in sequence.
+
+The result is a grid like:
+| Month | 2020 | 2021 | 2022 | ... |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1 | 2900 | 3200 | ... | ... |
+| 2 | 2600 | 2900 | ... | ... |
+| ... | ------------- | ------------- | ------------- | ------------- |
+
+
+
+
+
+
+
+
+
+```
 # 6. Top 10 wards
 top_wards = df['WARD'].value_counts().head(10).sort_values()
 
