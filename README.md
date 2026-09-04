@@ -70,7 +70,26 @@ dow = (df['ReportedDateTime'].dt.day_name()
        .rename_axis('day')
        .reset_index(name='count'))
 month_labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
- 
+```
+```dow``` - a chained set of operations that build the ```dow``` table:
+```dow_order``` - a list of the days of the week in the order we want them displayed
+```df['ReportedDateTime'].dt.day_name()``` - takes the timestamp of every incident and converts it to the name of the weekday it fell on
+```.value_counts()``` - tallies up how many incidents happened on each weekday
+```.reindex(dow_order)``` - reorders those tallies to match the Monday→Sunday order
+```.rename_axis('day')``` - labels the index column ```"day"```
+```.reset_index(name='count')``` 
+
+
+
+
+
+
+
+
+
+
+
+```python
 # 3. Offense type totals
 offense_totals = df[offense_cols].sum().sort_values(ascending=False)
  
