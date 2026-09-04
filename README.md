@@ -223,7 +223,7 @@ And now we will continue to plot the remaining charts...
 ```python
 # Panel 2: Day of week
 ax = axes[0, 1]
-sns.barplot(data=dow, x='day', y='count', ax=ax, palette=bone_bars(len(dow)), hue='day',
+sns.barplot(data=dow, x='day', y='count', ax=ax, palette=vlag_bars(len(dow)), hue='day',
             legend=False)
 ax.set_xticklabels([d[:3] for d in dow_order])
 ax.set_title('Total Incidents by Day of Week', fontsize=13, fontweight='bold')
@@ -232,7 +232,7 @@ ax.set_xlabel('Day'); ax.set_ylabel('Incidents')
 # Panel 3: Offense type totals
 ax = axes[1, 0]
 sns.barplot(x=offense_totals.values, y=offense_totals.index, ax=ax,
-            palette=bone_bars(len(offense_totals)), hue=offense_totals.index, legend=False)
+            palette=vlag_bars(len(offense_totals)), hue=offense_totals.index, legend=False)
 ax.set_title('Incidents by Offense Type', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
@@ -240,7 +240,7 @@ ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
 # Panel 4: Top weapons used
 ax = axes[1, 1]
 sns.barplot(x=weapons.values, y=weapons.index, ax=ax,
-            palette=bone_bars(len(weapons)), hue=weapons.index, legend=False)
+            palette=vlag_bars(len(weapons)), hue=weapons.index, legend=False)
 ax.set_title('Top Weapons Used (excl. "NONE")', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
  
@@ -255,7 +255,7 @@ ax.set_xlabel('Year'); ax.set_ylabel('')
 # Panel 6: Top wards
 ax = axes[2, 1]
 sns.barplot(x=top_wards.values, y=[f'Ward {int(w)}' for w in top_wards.index],
-            ax=ax, palette=bone_bars(len(top_wards)), hue=top_wards.index, legend=False)
+            ax=ax, palette=vlag_bars(len(top_wards)), hue=top_wards.index, legend=False)
 ax.set_title('Top 10 Wards by Incident Count', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ```
