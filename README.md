@@ -63,7 +63,7 @@ yearly = df.groupby('ReportedYear').size().reset_index(name='count')
  ```.reset_index(name='count')``` - turns that into a clean two-column table: ReportedYear and count.
 
  So ```yearly``` ends up looking like:
-| ReportedYear | Count |
+| ReportedYear | count |
 | ------------- | ------------- |
 | 2020 | 35651 |
 | 2021 | 43346 |
@@ -87,26 +87,51 @@ month_labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 ```dow``` - a chained set of operations that build the ```dow``` table:
 
 ```dow_order``` - a list of the days of the week in the order we want them displayed
+
 ```df['ReportedDateTime'].dt.day_name()``` - takes the timestamp of every incident and converts it to the name of the weekday it fell on
+
 ```.value_counts()``` - tallies up how many incidents happened on each weekday
+
 ```.reindex(dow_order)``` - reorders those tallies to match the Monday→Sunday order
+
 ```.rename_axis('day')``` - labels the index column ```"day"```
-```.reset_index(name='count')``` 
 
+```.reset_index(name='count')``` - turns it into a clean two-column table: ```day``` and ```count```
 
+So ```dow``` ends up looking like:
+| day | Count |
+| ------------- | ------------- |
+| Monday | 31 ... |
+| Tuesday | ... |
+| ... | ... |
+| Sunday | 33 ... |
 
-
-
-
-
-
-
-
+Next...
 
 ```python
 # 3. Offense type totals
 offense_totals = df[offense_cols].sum().sort_values(ascending=False)
- 
+ ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
 # 4. Top weapons (excluding NaN/NONE clutter, keep top 8 real categories)
 weapons = df['WeaponUsed'].value_counts()
 weapons = weapons[~weapons.index.isin(['NONE'])].head(8)
