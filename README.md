@@ -154,8 +154,11 @@ heat.index = month_labels
  ```
 
 ```index='ReportedMonth'``` - makes each row of the resulting table one of the 12 months.
+
 ```columns='ReportedYear'``` - makes each column one of the years (2020–2025).
+
 ```values='IncidentNum', aggfunc='count'``` - for every month/year combination, counts how many incident numbers fall in that cell.
+
 ```.reindex(range(1, 13))``` - forces the row order to be month numbers 1 through 12 in sequence.
 
 The result is a grid like:
@@ -165,17 +168,99 @@ The result is a grid like:
 | 2 | 2600 | 2900 | ... | ... |
 | ... | ... | ... | ... | ... |
 
-
-
-
-
-
-
-
-
-```
+Next...
+```python
 # 6. Top 10 wards
 top_wards = df['WARD'].value_counts().head(10).sort_values()
+```
+
+```df['WARD'].value_counts()``` - counts how many incidents occurred in each ward, sorted from most incidents to fewest.
+```.head(10)``` - keeps only the top 10 wards by incident count, dropping the rest
+```.sort_values()``` - re-sorts those 10 wards, but this time in ascending order
+
+So ```top_wards``` ends up as:
+| Ward | count | 
+| ------------- | ------------- |
+| 177 | ~1,600 (10th highest) | 
+| 188 | ~1,700 | 
+| ... | ... |
+| 186 | ~4,000 (highest) |
+
+
+# :camera: Visualizing our Data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
