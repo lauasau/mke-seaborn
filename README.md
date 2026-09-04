@@ -49,7 +49,6 @@ def vlag_bars(n):
 ```
 # :fork_and_knife: Prepping the Data
 Next, we will prep the data for analysis.
-
 ```python
 # ---------- Prep data ----------
 # 1. Yearly trend
@@ -189,6 +188,13 @@ So ```top_wards``` ends up as:
 
 # :camera: Visualizing our Data
 Now that we are done prepping our data, it is time to create our graphics!
+```python
+# ---------- Figure ----------
+fig, axes = plt.subplots(3, 2, figsize=(16, 18))
+fig.suptitle('Milwaukee WIBRS Crime Dashboard (2020\u20132025)', fontsize=20,
+             fontweight='bold', color='#1a1a1a', y=0.995)
+```
+```plt.subplots(3, 2, ...)``` - created a 3-row × 2-column grid of empty chart panels, stored in ```axes```.
 
 ```python
 # Panel 1: Yearly trend
@@ -200,6 +206,34 @@ ax.set_title('Total Incidents by Year', fontsize=13, fontweight='bold')
 ax.set_xlabel('Year'); ax.set_ylabel('Incidents')
 ax.set_xticks(yearly['ReportedYear'])
 ```
+```ax = axes[0, 0]``` - grabs the specific panel at row 0, column 0 (top-left) and stores it in the variable ```ax.```
+
+```sns.lineplot(...)``` - draws the line chart itself — the yearly incident counts (from the ```yearly``` table built earlier) as a line with round markers at each year, colored with the shared ```ACCENT``` color, 2.5pt thick line.
+
+```ax.fill_between(...)``` - shades the area underneath the line (from the line down to 0) with the same accent color at 15% opacity — that's the soft filled-in look under the curve you see in the image.
+
+```ax.set_title``` - sets this panel's title text to "Total Incidents by Year," bold, size 13.
+
+```ax.set_xlabel``` - labels the x-axis "Year" and the y-axis "Incidents."
+
+```ax.set_xticks(yearly['ReportedYear'])``` - forces the x-axis to show a tick mark for every actual year in the data (2020, 2021, 2022...2025) rather than letting matplotlib pick its own arbitrary tick spacing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
