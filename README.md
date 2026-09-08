@@ -282,13 +282,15 @@ ax.set_xlabel('Count'); ax.set_ylabel('')
 
 <img width="588" height="437" alt="panel_6_top_wards" src="https://github.com/user-attachments/assets/76f19df2-5f1c-44c5-8701-90e3e8b0d9b3" />
 
-Now that we have our charts ready, we will display on a dashboard layout and then save it to our folder.
+Now that we have our charts ready, we will display them on a dashboard layout and then save it as a 'png' into our folder.
 ```python
 plt.tight_layout(rect=[0, 0, 1, 0.98])
 plt.savefig('/mnt/user-data/outputs/wibrs_crime_dashboard_vlag.png', dpi=150,
             bbox_inches='tight')
 print('saved')
 ```
+
+<img width="2376" height="2687" alt="wibrs_crime_dashboard_vlag" src="https://github.com/user-attachments/assets/7e636edc-f54b-45e4-9abd-0609c394f0cc" />
 
 
 
