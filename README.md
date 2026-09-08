@@ -233,7 +233,9 @@ ax.set_xticklabels([d[:3] for d in dow_order])
 ax.set_title('Total Incidents by Day of Week', fontsize=13, fontweight='bold')
 ax.set_xlabel('Day'); ax.set_ylabel('Incidents')
 ```
+
 <img width="1173" height="873" alt="panel_2_day_of_week" src="https://github.com/user-attachments/assets/5345d187-cae6-49d7-82b7-1433a025fe9b" />
+
 ```python
 # Panel 3: Offense type totals
 ax = axes[1, 0]
@@ -243,6 +245,7 @@ ax.set_title('Incidents by Offense Type', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
  ```
+
 <img width="1175" height="873" alt="panel_3_offense_type" src="https://github.com/user-attachments/assets/3af47e6d-d70f-471d-9c00-337b39eeba1d" />
 
 ```python
@@ -253,6 +256,7 @@ sns.barplot(x=weapons.values, y=weapons.index, ax=ax,
 ax.set_title('Top Weapons Used (excl. "NONE")', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ```
+
 <img width="1178" height="873" alt="panel_4_top_weapons" src="https://github.com/user-attachments/assets/14842f8d-402f-4456-9f9a-bfc40fba2179" />
 
 ```python
@@ -264,6 +268,7 @@ sns.heatmap(heat, ax=ax, cmap=PALETTE,
 ax.set_title('Incident Volume Heatmap (Month \u00d7 Year)', fontsize=13, fontweight='bold')
 ax.set_xlabel('Year'); ax.set_ylabel('')
 ```
+
 <img width="1150" height="873" alt="panel_5_heatmap" src="https://github.com/user-attachments/assets/aa3f2cc7-2e8f-4a0d-91de-1533bfb837cd" />
 
 ```python
