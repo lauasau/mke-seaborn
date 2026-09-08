@@ -1,7 +1,8 @@
 # :book: Introduction
 
-Today, I will be practicing my Python skills! Specifically, I want to create a number of different visualizations by utilizing the 'seaborn' library. 
-Seaborn is one of my favorite libraries since it is so easy to learn and because it creates such beautiful plots!
+Today, I will be practicing my Python skills! Specifically, I will be practicing with seaborn. Seaborn is one of my favorite libraries since it is so easy to learn and because it creates such beautiful plots! 
+
+For this project, I want to create a number of different visualizations and I will also be compiling them into a static dashboard. 
 
 <img width="580" height="180" alt="image" src="https://github.com/user-attachments/assets/18680e3c-f450-44c5-90ed-abfe5316bf6b" />
 
@@ -295,89 +296,7 @@ print('saved')
 
 <img width="2376" height="2687" alt="wibrs_crime_dashboard_vlag" src="https://github.com/user-attachments/assets/7e636edc-f54b-45e4-9abd-0609c394f0cc" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Voilà! Here's our completed dashboard with all 6 plots displayed!
 
 
 
