@@ -207,7 +207,7 @@ ax.set_xlabel('Year'); ax.set_ylabel('Incidents')
 ax.set_xticks(yearly['ReportedYear'])
 ```
 
-<img width="1173" height="700" alt="panel_1_yearly_trend" src="https://github.com/user-attachments/assets/c745d3b9-bf9e-4307-bafa-f2f47e35dfa8" />
+<img width="586" height="437" alt="panel_1_yearly_trend" src="https://github.com/user-attachments/assets/c745d3b9-bf9e-4307-bafa-f2f47e35dfa8" />
 
 
 ```ax = axes[0, 0]``` - grabs the specific panel at row 0, column 0 (top-left) and stores it in the variable ```ax.```
