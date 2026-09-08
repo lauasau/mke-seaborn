@@ -20,6 +20,7 @@ import seaborn as sns
 ## :file_folder: Loading the Data
 Using the pandas function ```pd.read_excel()```, we will then load the data from our Excel spreadsheet file into a pandas Dataframe. In this case, our Excel file is named "WIBRS F copy 2.xlsx." We will also define the list of the crime-category column name from our dataset.
 ```python
+# ---------- Load Data ----------
 df = pd.read_excel('WIBRS F copy 2.xlsx')
 offense_cols = ['AssaultOffense','VehicleTheft','CriminalDamage','Theft','LockedVehicle',
                  'Burglary','Robbery','SexOffense','Arson','Homicide']
@@ -27,7 +28,8 @@ offense_cols = ['AssaultOffense','VehicleTheft','CriminalDamage','Theft','Locked
 ## :paintbrush: Styling the Color Palette
 Next, I will be selecting which color palette I want to use for my charts. Seaborn has numerous palettes that you can choose from, and you can even create your own. I will be using the palette 'vlag.' Vlag is a diverging colormap, so I will have to add some extra code to make sure that every bar is visibly blue or red and none of them get stuck in the washed-out white gap. 
 ```python
-# ---------- Style: light shaded theme and one shared palette ----------
+# ---------- Style Data ----------
+#Light shaded theme and one shared palette 
 sns.set_theme(style = 'darkgrid')
 
 #Shared palette family that will be used everywhere
@@ -51,7 +53,7 @@ def vlag_bars(n):
 # :fork_and_knife: Prepping the Data
 Next, we will prep the data for analysis.
 ```python
-# ---------- Prep data ----------
+# ---------- Prep Data ----------
 # 1. Yearly trend
 yearly = df.groupby('ReportedYear').size().reset_index(name = 'count')
  ```
@@ -128,7 +130,7 @@ So ```offense_totals``` ends up as a simple ranked list:
 
 Next...
 ```python
-# 4. Top weapons (excluding NaN/NONE clutter, keep top 8 real categories)
+# 4. Top weapons (we will exclulde the NaN/NONE clutter and only keep top 8 real categories)
 weapons = df['WeaponUsed'].value_counts()
 weapons = weapons[~weapons.index.isin(['NONE'])].head(8)
  ```
@@ -190,7 +192,7 @@ So ```top_wards``` ends up as:
 # :camera: Visualizing our Data
 Now that we are done prepping our data, it is time to create our graphics!
 ```python
-# ---------- Figure ----------
+# ---------- Visualize Data ----------
 fig, axes = plt.subplots(3, 2, figsize=(16, 18))
 fig.suptitle('Milwaukee WIBRS Crime Dashboard (2020\u20132025)', fontsize=20,
              fontweight='bold', color='#1a1a1a', y=0.995)
