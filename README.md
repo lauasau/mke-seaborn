@@ -27,17 +27,18 @@ offense_cols = ['AssaultOffense','VehicleTheft','CriminalDamage','Theft','Locked
 ## :paintbrush: Styling the Color Palette
 Next, I will be selecting which color palette I want to use for my charts. Seaborn has numerous palettes that you can choose from, and you can even create your own. I will be using the palette 'vlag.' Vlag is a diverging colormap, so I will have to add some extra code to make sure that every bar is visibly blue or red and none of them get stuck in the washed-out white gap. 
 ```python
-# ---------- Style: light shaded theme + one shared palette ----------
+# ---------- Style: light shaded theme and one shared palette ----------
 sns.set_theme(style='darkgrid')
 
-#Shared palette family used everywhere
+#Shared palette family that will be used everywhere
 PALETTE = 'vlag'                        
 CMAP = sns.color_palette(PALETTE, as_cmap=True)
-ACCENT = sns.color_palette(PALETTE, 8)[1]  # single accent color for line/trend charts
+#Single accent color for line/trend charts
+ACCENT = sns.color_palette(PALETTE, 8)[1]  
  
 def vlag_bars(n):
 #Sample the palette while skipping its washed-out white middle band
-#This way, every bar stays visible against the shaded background
+#We do this so that every bar stays visible against the shaded background
     if n == 1:
         pts = [0.15]
     else:
@@ -191,18 +192,18 @@ Now that we are done prepping our data, it is time to create our graphics!
 ```python
 # ---------- Figure ----------
 fig, axes = plt.subplots(3, 2, figsize=(16, 18))
-fig.suptitle('Milwaukee WIBRS Crime Dashboard (2020\u20132025)', fontsize=20,
-             fontweight='bold', color='#1a1a1a', y=0.995)
+fig.suptitle('Milwaukee WIBRS Crime Dashboard (2020\u20132025)', fontsize = 20,
+             fontweight = 'bold', color = '#1a1a1a', y = 0.995)
 ```
 ```plt.subplots(3, 2, ...)``` - created a 3-row × 2-column grid of empty chart panels, stored in ```axes```.
 
 ```python
 # Panel 1: Yearly trend
 ax = axes[0, 0]
-sns.lineplot(data=yearly, x='ReportedYear', y='count', ax=ax,
-             marker='o', markersize=9, linewidth=2.5, color=ACCENT)
-ax.fill_between(yearly['ReportedYear'], yearly['count'], color=ACCENT, alpha=0.15)
-ax.set_title('Total Incidents by Year', fontsize=13, fontweight='bold')
+sns.lineplot(data=yearly, x = 'ReportedYear', y = 'count', ax=ax,
+             marker = 'o', markersize = 9, linewidth = 2.5, color = ACCENT)
+ax.fill_between(yearly['ReportedYear'], yearly['count'], color = ACCENT, alpha = 0.15)
+ax.set_title('Total Incidents by Year', fontsize = 13, fontweight = 'bold')
 ax.set_xlabel('Year'); ax.set_ylabel('Incidents')
 ax.set_xticks(yearly['ReportedYear'])
 ```
@@ -227,10 +228,10 @@ And now we will continue to plot the remaining charts...
 ```python
 # Panel 2: Day of week
 ax = axes[0, 1]
-sns.barplot(data=dow, x='day', y='count', ax=ax, palette=vlag_bars(len(dow)), hue='day',
-            legend=False)
+sns.barplot(data = dow, x = 'day', y = 'count', ax = ax, palette = vlag_bars(len(dow)), hue = 'day',
+            legend = False)
 ax.set_xticklabels([d[:3] for d in dow_order])
-ax.set_title('Total Incidents by Day of Week', fontsize=13, fontweight='bold')
+ax.set_title('Total Incidents by Day of Week', fontsize = 13, fontweight = 'bold')
 ax.set_xlabel('Day'); ax.set_ylabel('Incidents')
 ```
 
@@ -239,9 +240,9 @@ ax.set_xlabel('Day'); ax.set_ylabel('Incidents')
 ```python
 # Panel 3: Offense type totals
 ax = axes[1, 0]
-sns.barplot(x=offense_totals.values, y=offense_totals.index, ax=ax,
-            palette=vlag_bars(len(offense_totals)), hue=offense_totals.index, legend=False)
-ax.set_title('Incidents by Offense Type', fontsize=13, fontweight='bold')
+sns.barplot(x = offense_totals.values, y = offense_totals.index, ax = ax,
+            palette = vlag_bars(len(offense_totals)), hue = offense_totals.index, legend = False)
+ax.set_title('Incidents by Offense Type', fontsize = 13, fontweight = 'bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
  ```
@@ -251,9 +252,9 @@ ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
 ```python
 # Panel 4: Top weapons used
 ax = axes[1, 1]
-sns.barplot(x=weapons.values, y=weapons.index, ax=ax,
-            palette=vlag_bars(len(weapons)), hue=weapons.index, legend=False)
-ax.set_title('Top Weapons Used (excl. "NONE")', fontsize=13, fontweight='bold')
+sns.barplot(x = weapons.values, y = weapons.index, ax = ax,
+            palette = vlag_bars(len(weapons)), hue = weapons.index, legend = False)
+ax.set_title('Top Weapons Used (excl. "NONE")', fontsize = 13, fontweight = 'bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ```
 
@@ -262,10 +263,10 @@ ax.set_xlabel('Count'); ax.set_ylabel('')
 ```python
 # Panel 5: Year x Month heatmap
 ax = axes[2, 0]
-sns.heatmap(heat, ax=ax, cmap=PALETTE,
-            cbar_kws={'label': 'Incidents'},
-            linewidths=0.5, linecolor='#ffffff')
-ax.set_title('Incident Volume Heatmap (Month \u00d7 Year)', fontsize=13, fontweight='bold')
+sns.heatmap(heat, ax = ax, cmap = PALETTE,
+            cbar_kws = {'label': 'Incidents'},
+            linewidths = 0.5, linecolor = '#ffffff')
+ax.set_title('Incident Volume Heatmap (Month \u00d7 Year)', fontsize = 13, fontweight = 'bold')
 ax.set_xlabel('Year'); ax.set_ylabel('')
 ```
 
@@ -274,9 +275,9 @@ ax.set_xlabel('Year'); ax.set_ylabel('')
 ```python
 # Panel 6: Top wards
 ax = axes[2, 1]
-sns.barplot(x=top_wards.values, y=[f'Ward {int(w)}' for w in top_wards.index],
-            ax=ax, palette=vlag_bars(len(top_wards)), hue=top_wards.index, legend=False)
-ax.set_title('Top 10 Wards by Incident Count', fontsize=13, fontweight='bold')
+sns.barplot(x = top_wards.values, y = [f'Ward {int(w)}' for w in top_wards.index],
+            ax = ax, palette = vlag_bars(len(top_wards)), hue = top_wards.index, legend = False)
+ax.set_title('Top 10 Wards by Incident Count', fontsize = 13, fontweight = 'bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ```
 
@@ -284,9 +285,9 @@ ax.set_xlabel('Count'); ax.set_ylabel('')
 
 Now that we have our charts ready, we will display them on a dashboard layout and then save it as a 'png' into our folder.
 ```python
-plt.tight_layout(rect=[0, 0, 1, 0.98])
-plt.savefig('/mnt/user-data/outputs/wibrs_crime_dashboard_vlag.png', dpi=150,
-            bbox_inches='tight')
+plt.tight_layout(rect = [0, 0, 1, 0.98])
+plt.savefig('/mnt/user-data/outputs/wibrs_crime_dashboard_vlag.png', dpi = 150,
+            bbox_inches = 'tight')
 print('saved')
 ```
 
