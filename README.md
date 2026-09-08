@@ -2,7 +2,7 @@
 
 Today, I will be practicing my Python skills! Specifically, I will be practicing with Python's seaborn library. Seaborn is one of my favorite libraries since it is so easy to learn and because it creates such beautiful plots! 
 
-For this project, I want to create a number of different visualizations and I will also be compiling them into a static dashboard - the interactive dashboard will come later! :nerd:
+For this project, I want to create a number of different visualizations and I will also be compiling them into a static dashboard - the interactive dashboard will come later! :nerd_face:
 
 <img width="580" height="180" alt="image" src="https://github.com/user-attachments/assets/18680e3c-f450-44c5-90ed-abfe5316bf6b" />
 
