@@ -206,6 +206,8 @@ ax.set_title('Total Incidents by Year', fontsize=13, fontweight='bold')
 ax.set_xlabel('Year'); ax.set_ylabel('Incidents')
 ax.set_xticks(yearly['ReportedYear'])
 ```
+<img width="1173" height="873" alt="panel_1_yearly_trend" src="https://github.com/user-attachments/assets/c745d3b9-bf9e-4307-bafa-f2f47e35dfa8" />
+
 ```ax = axes[0, 0]``` - grabs the specific panel at row 0, column 0 (top-left) and stores it in the variable ```ax.```
 
 ```sns.lineplot(...)``` - draws the line chart itself — the yearly incident counts (from the ```yearly``` table built earlier) as a line with round markers at each year, colored with the shared ```ACCENT``` color, 2.5pt thick line.
@@ -228,7 +230,9 @@ sns.barplot(data=dow, x='day', y='count', ax=ax, palette=vlag_bars(len(dow)), hu
 ax.set_xticklabels([d[:3] for d in dow_order])
 ax.set_title('Total Incidents by Day of Week', fontsize=13, fontweight='bold')
 ax.set_xlabel('Day'); ax.set_ylabel('Incidents')
- 
+```
+<img width="1173" height="873" alt="panel_2_day_of_week" src="https://github.com/user-attachments/assets/5345d187-cae6-49d7-82b7-1433a025fe9b" />
+```python
 # Panel 3: Offense type totals
 ax = axes[1, 0]
 sns.barplot(x=offense_totals.values, y=offense_totals.index, ax=ax,
@@ -236,14 +240,18 @@ sns.barplot(x=offense_totals.values, y=offense_totals.index, ax=ax,
 ax.set_title('Incidents by Offense Type', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
- 
+ ```
+<img width="1175" height="873" alt="panel_3_offense_type" src="https://github.com/user-attachments/assets/3af47e6d-d70f-471d-9c00-337b39eeba1d" />
+```python
 # Panel 4: Top weapons used
 ax = axes[1, 1]
 sns.barplot(x=weapons.values, y=weapons.index, ax=ax,
             palette=vlag_bars(len(weapons)), hue=weapons.index, legend=False)
 ax.set_title('Top Weapons Used (excl. "NONE")', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
- 
+```
+<img width="1178" height="873" alt="panel_4_top_weapons" src="https://github.com/user-attachments/assets/14842f8d-402f-4456-9f9a-bfc40fba2179" />
+```python
 # Panel 5: Year x Month heatmap
 ax = axes[2, 0]
 sns.heatmap(heat, ax=ax, cmap=PALETTE,
@@ -251,7 +259,9 @@ sns.heatmap(heat, ax=ax, cmap=PALETTE,
             linewidths=0.5, linecolor='#ffffff')
 ax.set_title('Incident Volume Heatmap (Month \u00d7 Year)', fontsize=13, fontweight='bold')
 ax.set_xlabel('Year'); ax.set_ylabel('')
- 
+```
+<img width="1150" height="873" alt="panel_5_heatmap" src="https://github.com/user-attachments/assets/aa3f2cc7-2e8f-4a0d-91de-1533bfb837cd" />
+```python
 # Panel 6: Top wards
 ax = axes[2, 1]
 sns.barplot(x=top_wards.values, y=[f'Ward {int(w)}' for w in top_wards.index],
@@ -259,6 +269,8 @@ sns.barplot(x=top_wards.values, y=[f'Ward {int(w)}' for w in top_wards.index],
 ax.set_title('Top 10 Wards by Incident Count', fontsize=13, fontweight='bold')
 ax.set_xlabel('Count'); ax.set_ylabel('')
 ```
+<img width="1176" height="873" alt="panel_6_top_wards" src="https://github.com/user-attachments/assets/76f19df2-5f1c-44c5-8701-90e3e8b0d9b3" />
+
 
 Now that we have our charts ready, we will display on a dashboard layout and then save it to our folder.
 ```python
